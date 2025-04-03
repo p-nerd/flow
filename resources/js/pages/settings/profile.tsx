@@ -6,12 +6,12 @@ import { SettingsLayout } from '@/components/layouts/settings-layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { type BreadcrumbItem, type SharedData } from '@/types';
+import { type TBreadcrumb, type TSharedData } from '@/types';
 import { Transition } from '@headlessui/react';
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
-const breadcrumbs: BreadcrumbItem[] = [
+const breadcrumbs: TBreadcrumb[] = [
     {
         title: 'Profile settings',
         href: '/settings/profile',
@@ -30,7 +30,7 @@ export default function Profile({
     mustVerifyEmail: boolean;
     status?: string;
 }) {
-    const { auth } = usePage<SharedData>().props;
+    const { auth } = usePage<TSharedData>().props;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm<
         Required<ProfileForm>

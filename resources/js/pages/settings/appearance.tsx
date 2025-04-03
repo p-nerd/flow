@@ -1,4 +1,4 @@
-import type { BreadcrumbItem } from '@/types';
+import type { TBreadcrumb } from '@/types';
 
 import { AppearanceTabs } from '@/components/elements/appearance-tabs';
 import { HeadingSmall } from '@/components/elements/heading-small';
@@ -6,7 +6,7 @@ import { DashboardLayout } from '@/components/layouts/dashboard-layout';
 import { SettingsLayout } from '@/components/layouts/settings-layout';
 import { Head } from '@inertiajs/react';
 
-const breadcrumbs: BreadcrumbItem[] = [
+const breadcrumbs: TBreadcrumb[] = [
     {
         title: 'Appearance settings',
         href: '/settings/appearance',

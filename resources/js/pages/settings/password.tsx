@@ -2,7 +2,7 @@ import { HeadingSmall } from '@/components/elements/heading-small';
 import { InputError } from '@/components/elements/input-error';
 import { DashboardLayout } from '@/components/layouts/dashboard-layout';
 import { SettingsLayout } from '@/components/layouts/settings-layout';
-import { type BreadcrumbItem } from '@/types';
+import { type TBreadcrumb } from '@/types';
 import { Transition } from '@headlessui/react';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler, useRef } from 'react';
@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-const breadcrumbs: BreadcrumbItem[] = [
+const breadcrumbs: TBreadcrumb[] = [
     {
         title: 'Password settings',
         href: '/settings/password',

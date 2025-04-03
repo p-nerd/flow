@@ -20,7 +20,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { useInitials } from '@/hooks/use-initials';
 import { mainNavItems, rightNavItems } from '@/lib/navigations';
 import { cn } from '@/lib/utils';
-import { type BreadcrumbItem, type SharedData } from '@/types';
+import { type TBreadcrumb, type TSharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import { Menu, Search } from 'lucide-react';
 import { Logo } from './logo';
@@ -28,11 +28,11 @@ import { Logo } from './logo';
 const activeItemStyles = 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';
 
 interface AppHeaderProps {
-    breadcrumbs?: BreadcrumbItem[];
+    breadcrumbs?: TBreadcrumb[];
 }
 
 export function Header({ breadcrumbs = [] }: AppHeaderProps) {
-    const page = usePage<SharedData>();
+    const page = usePage<TSharedData>();
     const { auth } = page.props;
     const getInitials = useInitials();
     return (

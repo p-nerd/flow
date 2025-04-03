@@ -1,4 +1,4 @@
-import type { BreadcrumbItem } from '@/types';
+import type { TBreadcrumb } from '@/types';
 import type { ReactNode } from 'react';
 
 import { HeaderLayout } from './header-layout';
@@ -8,7 +8,7 @@ export const DashboardLayout = ({
     breadcrumbs,
 }: {
     children: ReactNode;
-    breadcrumbs?: BreadcrumbItem[];
+    breadcrumbs?: TBreadcrumb[];
 }) => {
     return <HeaderLayout breadcrumbs={breadcrumbs}>{children}</HeaderLayout>;
 };
