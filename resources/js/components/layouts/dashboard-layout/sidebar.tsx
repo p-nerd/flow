@@ -2,27 +2,27 @@ import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import {
-    Sidebar,
     SidebarContent,
     SidebarFooter,
     SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
+    Sidebar as SidebarUI,
 } from '@/components/ui/sidebar';
 import { mainNavItems, rightNavItems } from '@/lib/navigations';
 import { Link } from '@inertiajs/react';
-import AppLogo from './app-logo';
+import { Logo } from './logo';
 
-export function AppSidebar() {
+export function Sidebar() {
     return (
-        <Sidebar collapsible="icon" variant="inset">
+        <SidebarUI collapsible="icon" variant="inset">
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
                             <Link href="/dashboard" prefetch>
-                                <AppLogo />
+                                <Logo />
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
@@ -37,6 +37,6 @@ export function AppSidebar() {
                 <NavFooter items={rightNavItems} className="mt-auto" />
                 <NavUser />
             </SidebarFooter>
-        </Sidebar>
+        </SidebarUI>
     );
 }

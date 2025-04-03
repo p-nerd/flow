@@ -4,8 +4,9 @@ import { Head } from '@inertiajs/react';
 
 import AppearanceTabs from '@/components/appearance-tabs';
 import HeadingSmall from '@/components/heading-small';
-import { DashboardLayout } from '@/layouts/dashboard-layout';
-import SettingsLayout from '@/layouts/settings/layout';
+
+import { DashboardLayout } from '@/components/layouts/dashboard-layout';
+import { SettingsLayout } from '@/components/layouts/settings-layout';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

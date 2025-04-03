@@ -1,5 +1,7 @@
+import { DashboardLayout } from '@/components/layouts/dashboard-layout';
+import { SettingsLayout } from '@/components/layouts/settings-layout';
+
 import InputError from '@/components/input-error';
-import SettingsLayout from '@/layouts/settings/layout';
 import { type BreadcrumbItem } from '@/types';
 import { Transition } from '@headlessui/react';
 import { Head, useForm } from '@inertiajs/react';
@@ -9,7 +11,6 @@ import HeadingSmall from '@/components/heading-small';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { DashboardLayout } from '@/layouts/dashboard-layout';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

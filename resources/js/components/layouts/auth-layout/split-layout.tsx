@@ -1,14 +1,15 @@
-import AppLogoIcon from '@/components/app-logo-icon';
-import { type SharedData } from '@/types';
+import type { SharedData } from '@/types';
+import type { PropsWithChildren } from 'react';
+
+import { AppLogoIcon } from '@/components/app-logo-icon';
 import { Link, usePage } from '@inertiajs/react';
-import { type PropsWithChildren } from 'react';
 
 interface AuthLayoutProps {
     title?: string;
     description?: string;
 }
 
-export default function AuthSplitLayout({
+export default function SplitLayout({
     children,
     title,
     description,
