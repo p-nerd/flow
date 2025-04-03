@@ -1,6 +1,6 @@
-import { NavFooter } from '@/components/nav-footer';
-import { NavMain } from '@/components/nav-main';
-import { NavUser } from '@/components/nav-user';
+import { NavFooter } from '@/components/elements/nav-footer';
+import { NavMain } from '@/components/elements/nav-main';
+import { NavUser } from '@/components/elements/nav-user';
 import {
     SidebarContent,
     SidebarFooter,

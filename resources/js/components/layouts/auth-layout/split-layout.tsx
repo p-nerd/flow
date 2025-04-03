@@ -1,7 +1,7 @@
 import type { SharedData } from '@/types';
 import type { PropsWithChildren } from 'react';
 
-import { AppLogoIcon } from '@/components/app-logo-icon';
+import { AppLogoIcon } from '@/components/elements/app-logo-icon';
 import { Link, usePage } from '@inertiajs/react';
 
 interface AuthLayoutProps {

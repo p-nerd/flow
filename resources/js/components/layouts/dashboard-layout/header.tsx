@@ -1,6 +1,7 @@
-import { AppLogoIcon } from '@/components/app-logo-icon';
-import { Breadcrumbs } from '@/components/breadcrumbs';
-import { Icon } from '@/components/icon';
+import { AppLogoIcon } from '@/components/elements/app-logo-icon';
+import { Breadcrumbs } from '@/components/elements/breadcrumbs';
+import { Icon } from '@/components/elements/icon';
+import { UserMenuContent } from '@/components/elements/user-menu-content';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -16,7 +17,6 @@ import {
 } from '@/components/ui/navigation-menu';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { UserMenuContent } from '@/components/user-menu-content';
 import { useInitials } from '@/hooks/use-initials';
 import { mainNavItems, rightNavItems } from '@/lib/navigations';
 import { cn } from '@/lib/utils';
