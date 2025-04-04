@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/sheet';
 
 import { useForm } from '@inertiajs/react';
+import { useState } from 'react';
 
 import { InputError } from '@/components/elements/input-error';
 import { Button } from '@/components/ui/button';
@@ -15,14 +16,16 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 export const NewAccount = () => {
-    const { processing, post, data, setData, errors } = useForm<{
+    const [open, setOpen] = useState<boolean>(false);
+
+    const { processing, post, data, setData, errors, reset } = useForm<{
         name: string;
     }>({
         name: '',
     });
 
     return (
-        <Sheet>
+        <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
                 <Button variant="outline">Add an account</Button>
             </SheetTrigger>
@@ -36,7 +39,12 @@ export const NewAccount = () => {
                 <form
                     onSubmit={(e) => {
                         e.preventDefault();
-                        post(route('dashboard.accounts.store'));
+                        post(route('dashboard.accounts.store'), {
+                            onSuccess: () => {
+                                setOpen(false);
+                                reset();
+                            },
+                        });
                     }}
                     className="w-full space-y-4 p-4"
                 >

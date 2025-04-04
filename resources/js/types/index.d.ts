@@ -20,5 +20,5 @@ export type TSharedData = {
     auth: { user: TUser };
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
-    flash: { success: string; error: string };
+    flash: { success: string | null; error: string | null; moment: string };
 };

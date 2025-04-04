@@ -1,6 +1,9 @@
 import type { TSharedData } from '@/types';
 
+import { formatUTCToLocalTime } from '@/lib/time';
+import { toast } from '@/lib/toast';
 import { usePage } from '@inertiajs/react';
+import { useEffect } from 'react';
 
 // const useValidationErrorMount = () => {
 //     const { errors } = usePage<TSharedData>().props;
@@ -12,12 +15,13 @@ import { usePage } from '@inertiajs/react';
 //     }, [errors]);
 // };
 
-const useReturnMessageMount = () => {
-    const page = usePage<TSharedData>();
+const useFlashMessageMount = () => {
+    const { success, error, moment } = usePage<TSharedData>().props.flash;
 
-    console.log(page);
+    useEffect(() => toast.success(success, formatUTCToLocalTime(moment)), [success, moment]);
+    useEffect(() => toast.error(error, formatUTCToLocalTime(moment)), [error, moment]);
 };
 
 export const useBaseMount = () => {
-    useReturnMessageMount();
+    useFlashMessageMount();
 };
