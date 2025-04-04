@@ -43,7 +43,7 @@ export const SettingsLayout = ({
 
     return (
         <DashboardLayout title={title} href={href}>
-            <div className="px-4 py-6">
+            <div className="space-y-8 px-4 py-6">
                 <Heading title="Settings" description="Manage your profile and account settings" />
 
                 <div className="flex flex-col space-y-8 lg:flex-row lg:space-y-0 lg:space-x-12">

@@ -14,6 +14,7 @@ import { Message } from '@/components/elements/message';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { PlusIcon } from 'lucide-react';
 
 export const NewAccount = () => {
     const [open, setOpen] = useState<boolean>(false);
@@ -27,7 +28,10 @@ export const NewAccount = () => {
     return (
         <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-                <Button variant="outline">Add an account</Button>
+                <Button variant="outline" className="w-full lg:w-min">
+                    <PlusIcon className="size-4" />
+                    Add an account
+                </Button>
             </SheetTrigger>
             <SheetContent className="w-full space-y-4 overflow-y-auto lg:max-w-md">
                 <SheetHeader>
