@@ -12,6 +12,7 @@ import {
 
 import type { ReactNode } from 'react';
 
+import { buttonVariants } from '@/components/ui/button';
 import { useState } from 'react';
 
 import { Trash2Icon, XIcon } from 'lucide-react';
@@ -57,7 +58,7 @@ export const Confirmation = ({
                     </AlertDialogCancel>
                     <AlertDialogAction
                         onClick={onAction}
-                        className="bg-destructive hover:bg-destructive/90"
+                        className={buttonVariants({ variant: 'destructive' })}
                     >
                         {actionIcon || <Trash2Icon className="mr-2 h-4 w-4" />}
                         {actionText || 'Delete'}
