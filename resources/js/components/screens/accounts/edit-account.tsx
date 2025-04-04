@@ -4,23 +4,26 @@ import {
     SheetDescription,
     SheetHeader,
     SheetTitle,
-    SheetTrigger,
 } from '@/components/ui/sheet';
 
 import type { TAccount } from '@/types/models';
 
 import { useForm } from '@inertiajs/react';
-import { useState } from 'react';
 
 import { Message } from '@/components/elements/message';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { PlusIcon } from 'lucide-react';
 
-export const EditAccount = ({ account }: { account: TAccount }) => {
-    const [open, setOpen] = useState<boolean>(false);
-
+export const EditAccount = ({
+    open,
+    setOpen,
+    account,
+}: {
+    open: boolean;
+    setOpen: (open: boolean) => void;
+    account: TAccount;
+}) => {
     const { processing, patch, data, setData, errors, reset } = useForm<{
         name: string;
     }>({
@@ -29,12 +32,6 @@ export const EditAccount = ({ account }: { account: TAccount }) => {
 
     return (
         <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-                <Button variant="outline" className="w-full lg:w-min">
-                    <PlusIcon className="size-4" />
-                    Edit account
-                </Button>
-            </SheetTrigger>
             <SheetContent className="w-full space-y-4 overflow-y-auto lg:max-w-md">
                 <SheetHeader>
                     <SheetTitle>Edit '{account.name}' account</SheetTitle>

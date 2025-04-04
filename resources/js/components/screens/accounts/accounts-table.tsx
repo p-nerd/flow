@@ -1,23 +1,13 @@
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-
 import type { TAccount } from '@/types/models';
 import type { ColumnDef } from '@tanstack/react-table';
 
 import { select } from '@/components/elements/table/select';
+import { router } from '@inertiajs/react';
+import { useState } from 'react';
 
 import { DataTable } from '@/components/elements/table/data-table';
 import { SortHeader } from '@/components/elements/table/sort-header';
-import { Button } from '@/components/ui/button';
-import { router } from '@inertiajs/react';
-import { MoreHorizontalIcon } from 'lucide-react';
-import { useState } from 'react';
+import { CellActions } from './cell-actions';
 
 export const columns: ColumnDef<TAccount>[] = [
     select(),
@@ -27,29 +17,7 @@ export const columns: ColumnDef<TAccount>[] = [
     },
     {
         id: 'actions',
-        cell: ({ row }) => {
-            const account = row.original;
-
-            return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontalIcon className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem onClick={() => navigator.clipboard.writeText(account.id)}>
-                            Copy payment ID
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>View customer</DropdownMenuItem>
-                        <DropdownMenuItem>View payment details</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            );
-        },
+        cell: ({ row }) => <CellActions account={row.original} />,
     },
 ];
 
