@@ -16,7 +16,7 @@ import { Button } from '@/components/ui/button';
 import { EditIcon, MoreHorizontalIcon, TrashIcon } from 'lucide-react';
 import { EditAccount } from './edit-account';
 
-export const CellActions = ({ account }: { account: TAccount }) => {
+export const AccountActions = ({ account }: { account: TAccount }) => {
     const [editOpen, setEditOpen] = useState<boolean>(false);
     const [deleteOpen, setDeleteOpen] = useState<boolean>(false);
 

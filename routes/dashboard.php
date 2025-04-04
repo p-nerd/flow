@@ -25,9 +25,9 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
 
         Route::post('/', [CategoryController::class, 'store'])->name('dashboard.categories.store');
 
-        Route::patch('/{account}', [CategoryController::class, 'update'])->name('dashboard.categories.update');
+        Route::patch('/{category}', [CategoryController::class, 'update'])->name('dashboard.categories.update');
 
-        Route::delete('/{account}', [CategoryController::class, 'destroy'])->name('dashboard.categories.destroy');
+        Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('dashboard.categories.destroy');
         Route::delete('/', [CategoryController::class, 'destroys'])->name('dashboard.categories.destroys');
     });
 
