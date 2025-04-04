@@ -21,19 +21,17 @@ class AccountController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $validated = $request->validate([
+            'name' => ['string', 'required', 'max:255'],
+        ]);
+
+        return redirect()
+            ->route('dashboard.accounts.index')
+            ->with('success', 'Account created successfully');
     }
 
     /**

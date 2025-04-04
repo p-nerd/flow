@@ -1,15 +1,23 @@
 import type { TSharedData } from '@/types';
 
-import { toast } from '@/lib/toast';
 import { usePage } from '@inertiajs/react';
-import { useEffect } from 'react';
+
+// const useValidationErrorMount = () => {
+//     const { errors } = usePage<TSharedData>().props;
+//
+//     useEffect(() => {
+//         for (const error in errors) {
+//             toast.error(errors[error]);
+//         }
+//     }, [errors]);
+// };
+
+const useReturnMessageMount = () => {
+    const page = usePage<TSharedData>();
+
+    console.log(page);
+};
 
 export const useBaseMount = () => {
-    const { errors } = usePage<TSharedData>().props;
-
-    useEffect(() => {
-        for (const error in errors) {
-            toast.error(errors[error]);
-        }
-    }, [errors]);
+    useReturnMessageMount();
 };
