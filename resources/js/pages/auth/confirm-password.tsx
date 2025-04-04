@@ -3,7 +3,7 @@ import { Head, useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
-import { InputError } from '@/components/elements/input-error';
+import { Message } from '@/components/elements/message';
 import { AuthLayout } from '@/components/layouts/auth-layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -46,7 +46,7 @@ export default function ConfirmPassword() {
                             onChange={(e) => setData('password', e.target.value)}
                         />
 
-                        <InputError message={errors.password} />
+                        <Message error={errors.password} />
                     </div>
 
                     <div className="flex items-center">

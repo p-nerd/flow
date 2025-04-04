@@ -1,11 +1,12 @@
-import { cn } from '@/lib/utils';
 import { type HTMLAttributes } from 'react';
 
-export function InputError({
-    message,
+import { cn } from '@/lib/utils';
+
+export function Message({
+    error: message,
     className = '',
     ...props
-}: HTMLAttributes<HTMLParagraphElement> & { message?: string }) {
+}: HTMLAttributes<HTMLParagraphElement> & { error?: string }) {
     return message ? (
         <p {...props} className={cn('text-sm text-red-600 dark:text-red-400', className)}>
             {message}

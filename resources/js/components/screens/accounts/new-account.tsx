@@ -10,7 +10,7 @@ import {
 import { useForm } from '@inertiajs/react';
 import { useState } from 'react';
 
-import { InputError } from '@/components/elements/input-error';
+import { Message } from '@/components/elements/message';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -61,7 +61,7 @@ export const NewAccount = () => {
                             onChange={(e) => setData('name', e.target.value)}
                             placeholder="e.g. Cash, Bank, Credit Card"
                         />
-                        <InputError message={errors.name} />
+                        <Message error={errors.name} />
                     </div>
                     <Button disabled={processing} type="submit" className="w-full">
                         Create account
