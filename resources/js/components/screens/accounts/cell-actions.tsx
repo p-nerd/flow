@@ -33,6 +33,10 @@ export const CellActions = ({ account }: { account: TAccount }) => {
                         <EditIcon className="size-4" />
                         Edit
                     </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setEditOpen(true)}>
+                        <EditIcon className="size-4" />
+                        Edit
+                    </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
         </>

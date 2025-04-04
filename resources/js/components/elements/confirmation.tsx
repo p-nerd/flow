@@ -12,24 +12,35 @@ import {
 
 import type { ReactNode } from 'react';
 
+import { useState } from 'react';
+
 import { CheckIcon, XIcon } from 'lucide-react';
 
 export const Confirmation = ({
+    onAction,
     title,
     description,
     actionText,
-    onAction,
     children,
+    open,
+    setOpen,
 }: {
+    onAction: () => void;
     title?: string;
     description?: ReactNode;
     actionText?: string;
-    onAction: () => void;
-    children: ReactNode;
+    children?: ReactNode;
+    open?: boolean;
+    setOpen?: () => void;
 }) => {
+    const [localOpen, setLocalOpen] = useState<boolean>(false);
+
     return (
-        <AlertDialog>
-            <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
+        <AlertDialog
+            open={open !== undefined ? open : localOpen}
+            onOpenChange={setOpen !== undefined ? setOpen : setLocalOpen}
+        >
+            {children && <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>}
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle>{title || 'Are you absolutely sure?'}</AlertDialogTitle>
