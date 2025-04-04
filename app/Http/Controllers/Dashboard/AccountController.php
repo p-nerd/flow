@@ -11,9 +11,13 @@ class AccountController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $accounts = $request->user()->accounts()->get();
+
+        return inertia('dashboard/accounts', [
+            'accounts' => $accounts,
+        ]);
     }
 
     /**
