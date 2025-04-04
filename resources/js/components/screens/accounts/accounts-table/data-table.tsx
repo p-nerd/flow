@@ -23,15 +23,18 @@ import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { TrashIcon } from 'lucide-react';
 
 export const DataTable = <TData, TValue>({
     columns,
     data,
     searchable,
+    onDelete,
 }: {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
     searchable: string[];
+    onDelete: (data: TData[]) => void;
 }) => {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [globalFilter, setGlobalFilter] = useState<string>('');
@@ -68,13 +71,26 @@ export const DataTable = <TData, TValue>({
 
     return (
         <div>
-            <div className="flex items-center py-4">
+            <div className="flex items-center justify-between space-x-2 py-4">
                 <Input
                     placeholder={cn(`Filter ${searchable.join(',')}...`)}
                     value={globalFilter}
                     onChange={(e) => setGlobalFilter(e.target.value)}
                     className="max-w-sm"
                 />
+                {table.getFilteredSelectedRowModel().rows.length > 0 && (
+                    <Button
+                        variant="destructive"
+                        onClick={() =>
+                            onDelete(
+                                table.getFilteredSelectedRowModel().rows.map((row) => row.original),
+                            )
+                        }
+                    >
+                        <TrashIcon className="size-4" /> Delete (
+                        {table.getFilteredSelectedRowModel().rows.length})
+                    </Button>
+                )}
             </div>
             <div className="rounded-md border">
                 <Table>
