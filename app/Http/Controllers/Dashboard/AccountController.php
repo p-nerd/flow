@@ -36,9 +36,7 @@ class AccountController extends Controller
         $query = $request->user()->accounts();
 
         if ($query->count() >= Account::LIMIT) {
-            return redirect()
-                ->route('dashboard.accounts.index')
-                ->with('error', 'You have reached the maximum limit of '.Account::LIMIT.' accounts.');
+            return redirect()->back()->with('error', 'You have reached the maximum limit of '.Account::LIMIT.' accounts.');
         }
 
         /**

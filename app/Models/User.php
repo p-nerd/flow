@@ -56,4 +56,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Account::class);
     }
+
+    /**
+     * Get the accounts for the user.
+     */
+    public function categories(): HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
 }

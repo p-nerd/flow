@@ -1,4 +1,4 @@
-import type { TAccount } from '@/types/models';
+import type { TCategory } from '@/types/models';
 import type { ColumnDef } from '@tanstack/react-table';
 
 import { select } from '@/components/elements/table/select';
@@ -7,9 +7,9 @@ import { useState } from 'react';
 
 import { DataTable } from '@/components/elements/table/data-table';
 import { SortHeader } from '@/components/elements/table/sort-header';
-import { AccountActions } from './account-actions';
+import { CategoryActions } from './category-actions';
 
-export const columns: ColumnDef<TAccount>[] = [
+export const columns: ColumnDef<TCategory>[] = [
     select(),
     {
         accessorKey: 'name',
@@ -17,23 +17,23 @@ export const columns: ColumnDef<TAccount>[] = [
     },
     {
         id: 'actions',
-        cell: ({ row }) => <AccountActions account={row.original} />,
+        cell: ({ row }) => <CategoryActions category={row.original} />,
     },
 ];
 
-export const AccountsTable = ({ accounts }: { accounts: TAccount[] }) => {
+export const CategoriesTable = ({ categories }: { categories: TCategory[] }) => {
     const [loading, setLoading] = useState<boolean>(false);
 
     return (
         <div>
             <DataTable
                 columns={columns}
-                data={accounts}
+                data={categories}
                 searchable={['name']}
                 disabled={loading}
-                onDelete={(accounts, onSuccess) => {
-                    router.delete(route('dashboard.accounts.destroys'), {
-                        data: { ids: accounts.map((account) => account.id) },
+                onDelete={(categories, onSuccess) => {
+                    router.delete(route('dashboard.categories.destroys'), {
+                        data: { ids: categories.map((category) => category.id) },
                         onStart: () => setLoading(true),
                         onFinish: () => setLoading(false),
                         onSuccess: onSuccess,
