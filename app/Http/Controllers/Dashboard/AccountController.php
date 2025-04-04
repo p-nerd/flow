@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Account;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AccountController extends Controller
 {
@@ -78,7 +80,13 @@ class AccountController extends Controller
      */
     public function destroy(Account $account)
     {
-        //
+        Gate::allowIf(fn (User $user) => $user->id === $account->user_id);
+
+        $account->delete();
+
+        return redirect()
+            ->route('dashboard.accounts.index')
+            ->with('success', 'Account deleted successfully');
     }
 
     /**

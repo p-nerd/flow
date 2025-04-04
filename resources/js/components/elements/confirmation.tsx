@@ -14,24 +14,26 @@ import type { ReactNode } from 'react';
 
 import { useState } from 'react';
 
-import { CheckIcon, XIcon } from 'lucide-react';
+import { Trash2Icon, XIcon } from 'lucide-react';
 
 export const Confirmation = ({
-    onAction,
-    title,
-    description,
-    actionText,
-    children,
     open,
     setOpen,
+    children,
+    title,
+    description,
+    onAction,
+    actionIcon,
+    actionText,
 }: {
-    onAction: () => void;
+    open?: boolean;
+    setOpen?: (open: boolean) => void;
+    children?: ReactNode;
     title?: string;
     description?: ReactNode;
+    onAction: () => void;
+    actionIcon?: ReactNode;
     actionText?: string;
-    children?: ReactNode;
-    open?: boolean;
-    setOpen?: () => void;
 }) => {
     const [localOpen, setLocalOpen] = useState<boolean>(false);
 
@@ -57,8 +59,8 @@ export const Confirmation = ({
                         onClick={onAction}
                         className="bg-destructive hover:bg-destructive/90"
                     >
-                        <CheckIcon className="mr-2 h-4 w-4" />
-                        {actionText || 'Continue'}
+                        {actionIcon || <Trash2Icon className="mr-2 h-4 w-4" />}
+                        {actionText || 'Delete'}
                     </AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>

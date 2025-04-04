@@ -8,18 +8,26 @@ import {
 
 import type { TAccount } from '@/types/models';
 
+import { router } from '@inertiajs/react';
 import { useState } from 'react';
 
+import { Confirmation } from '@/components/elements/confirmation';
 import { Button } from '@/components/ui/button';
-import { EditIcon, MoreHorizontalIcon } from 'lucide-react';
+import { EditIcon, MoreHorizontalIcon, TrashIcon } from 'lucide-react';
 import { EditAccount } from './edit-account';
 
 export const CellActions = ({ account }: { account: TAccount }) => {
     const [editOpen, setEditOpen] = useState<boolean>(false);
+    const [deleteOpen, setDeleteOpen] = useState<boolean>(false);
+
+    const handleAction = () => {
+        router.delete(route('dashboard.accounts.destroy', account));
+    };
 
     return (
         <>
             <EditAccount open={editOpen} setOpen={setEditOpen} account={account} />
+            <Confirmation open={deleteOpen} setOpen={setDeleteOpen} onAction={handleAction} />
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="h-8 w-8 p-0">
@@ -33,9 +41,9 @@ export const CellActions = ({ account }: { account: TAccount }) => {
                         <EditIcon className="size-4" />
                         Edit
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setEditOpen(true)}>
-                        <EditIcon className="size-4" />
-                        Edit
+                    <DropdownMenuItem onClick={() => setDeleteOpen(true)} variant="destructive">
+                        <TrashIcon className="size-4" />
+                        Delete
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>

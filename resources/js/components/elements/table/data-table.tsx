@@ -21,10 +21,10 @@ import type { ColumnDef, Row, SortingState } from '@tanstack/react-table';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 
+import { Confirmation } from '@/components/elements/confirmation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { TrashIcon } from 'lucide-react';
-import { Confirmation } from '../confirmation';
 
 export const DataTable = <TData, TValue>({
     columns,
@@ -83,7 +83,6 @@ export const DataTable = <TData, TValue>({
                 />
                 {table.getFilteredSelectedRowModel().rows.length > 0 && (
                     <Confirmation
-                        actionText="Delete"
                         onAction={() =>
                             onDelete(
                                 table.getFilteredSelectedRowModel().rows.map((row) => row.original),
