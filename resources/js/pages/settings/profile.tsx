@@ -1,6 +1,6 @@
 import { DeleteUser } from '@/components/elements/delete-user';
 import { HeadingSmall } from '@/components/elements/heading-small';
-import { InputError } from '@/components/elements/input-error';
+import { Message } from '@/components/elements/message';
 import { SettingsLayout } from '@/components/layouts/settings-layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -61,7 +61,7 @@ export default function Profile({
                             placeholder="Full name"
                         />
 
-                        <InputError className="mt-2" message={errors.name} />
+                        <Message className="mt-2" error={errors.name} />
                     </div>
 
                     <div className="grid gap-2">
@@ -78,7 +78,7 @@ export default function Profile({
                             placeholder="Email address"
                         />
 
-                        <InputError className="mt-2" message={errors.email} />
+                        <Message className="mt-2" error={errors.email} />
                     </div>
 
                     {mustVerifyEmail && auth.user.email_verified_at === null && (

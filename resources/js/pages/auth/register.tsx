@@ -1,13 +1,12 @@
-import { Head, useForm } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
-import { FormEventHandler } from 'react';
-
-import { InputError } from '@/components/elements/input-error';
+import { Message } from '@/components/elements/message';
 import { TextLink } from '@/components/elements/text-link';
 import { AuthLayout } from '@/components/layouts/auth-layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Head, useForm } from '@inertiajs/react';
+import { LoaderCircle } from 'lucide-react';
+import type { FormEventHandler } from 'react';
 
 type RegisterForm = {
     name: string;
@@ -53,7 +52,7 @@ export default function Register() {
                             disabled={processing}
                             placeholder="Full name"
                         />
-                        <InputError message={errors.name} className="mt-2" />
+                        <Message error={errors.name} className="mt-2" />
                     </div>
 
                     <div className="grid gap-2">
@@ -69,7 +68,7 @@ export default function Register() {
                             disabled={processing}
                             placeholder="email@example.com"
                         />
-                        <InputError message={errors.email} />
+                        <Message error={errors.email} />
                     </div>
 
                     <div className="grid gap-2">
@@ -85,7 +84,7 @@ export default function Register() {
                             disabled={processing}
                             placeholder="Password"
                         />
-                        <InputError message={errors.password} />
+                        <Message error={errors.password} />
                     </div>
 
                     <div className="grid gap-2">
@@ -101,7 +100,7 @@ export default function Register() {
                             disabled={processing}
                             placeholder="Confirm password"
                         />
-                        <InputError message={errors.password_confirmation} />
+                        <Message error={errors.password_confirmation} />
                     </div>
 
                     <Button

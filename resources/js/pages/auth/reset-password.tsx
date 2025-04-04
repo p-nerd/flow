@@ -1,12 +1,11 @@
-import { Head, useForm } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
-import { FormEventHandler } from 'react';
-
-import { InputError } from '@/components/elements/input-error';
+import { Message } from '@/components/elements/message';
 import { AuthLayout } from '@/components/layouts/auth-layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Head, useForm } from '@inertiajs/react';
+import { LoaderCircle } from 'lucide-react';
+import type { FormEventHandler } from 'react';
 
 interface ResetPasswordProps {
     token: string;
@@ -55,7 +54,7 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
                             readOnly
                             onChange={(e) => setData('email', e.target.value)}
                         />
-                        <InputError message={errors.email} className="mt-2" />
+                        <Message error={errors.email} className="mt-2" />
                     </div>
 
                     <div className="grid gap-2">
@@ -71,7 +70,7 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
                             onChange={(e) => setData('password', e.target.value)}
                             placeholder="Password"
                         />
-                        <InputError message={errors.password} />
+                        <Message error={errors.password} />
                     </div>
 
                     <div className="grid gap-2">
@@ -86,7 +85,7 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
                             onChange={(e) => setData('password_confirmation', e.target.value)}
                             placeholder="Confirm password"
                         />
-                        <InputError message={errors.password_confirmation} className="mt-2" />
+                        <Message error={errors.password_confirmation} className="mt-2" />
                     </div>
 
                     <Button type="submit" className="mt-4 w-full" disabled={processing}>

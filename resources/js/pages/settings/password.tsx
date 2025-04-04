@@ -4,7 +4,7 @@ import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
 
 import { HeadingSmall } from '@/components/elements/heading-small';
-import { InputError } from '@/components/elements/input-error';
+import { Message } from '@/components/elements/message';
 import { SettingsLayout } from '@/components/layouts/settings-layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -63,8 +63,7 @@ export default function Password() {
                             autoComplete="current-password"
                             placeholder="Current password"
                         />
-
-                        <InputError message={errors.current_password} />
+                        <Message error={errors.current_password} />
                     </div>
 
                     <div className="grid gap-2">
@@ -81,7 +80,7 @@ export default function Password() {
                             placeholder="New password"
                         />
 
-                        <InputError message={errors.password} />
+                        <Message error={errors.password} />
                     </div>
 
                     <div className="grid gap-2">
@@ -97,7 +96,7 @@ export default function Password() {
                             placeholder="Confirm password"
                         />
 
-                        <InputError message={errors.password_confirmation} />
+                        <Message error={errors.password_confirmation} />
                     </div>
 
                     <div className="flex items-center gap-4">

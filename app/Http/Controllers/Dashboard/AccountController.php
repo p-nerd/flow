@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Account;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AccountController extends Controller
 {
@@ -13,7 +15,9 @@ class AccountController extends Controller
      */
     public function index(Request $request)
     {
-        $accounts = $request->user()->accounts()->get();
+        $query = $request->user()->accounts();
+
+        $accounts = $query->limit(Account::LIMIT)->get();
 
         return inertia('dashboard/accounts', [
             'accounts' => $accounts,
@@ -29,30 +33,20 @@ class AccountController extends Controller
             'name' => ['string', 'required', 'max:255'],
         ]);
 
+        $query = $request->user()->accounts();
+
+        if ($query->count() >= Account::LIMIT) {
+            return redirect()
+                ->route('dashboard.accounts.index')
+                ->with('error', 'You have reached the maximum limit of '.Account::LIMIT.' accounts.');
+        }
+
         /**
          * @var Account $account
          */
-        $account = $request->user()->accounts()->create($validated);
+        $account = $query->create($validated);
 
-        return redirect()
-            ->route('dashboard.accounts.index')
-            ->with('success', "'{$account->name}' account created successfully");
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Account $account)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Account $account)
-    {
-        //
+        return redirect()->back()->with('success', "'{$account->name}' account created successfully");
     }
 
     /**
@@ -60,7 +54,15 @@ class AccountController extends Controller
      */
     public function update(Request $request, Account $account)
     {
-        //
+        Gate::allowIf(fn (User $user) => $user->id === $account->user_id);
+
+        $validated = $request->validate([
+            'name' => ['string', 'required', 'max:255'],
+        ]);
+
+        $account->update($validated);
+
+        return redirect()->back()->with('success', "'{$account->name}' account updated successfully");
     }
 
     /**
@@ -68,6 +70,27 @@ class AccountController extends Controller
      */
     public function destroy(Account $account)
     {
-        //
+        Gate::allowIf(fn (User $user) => $user->id === $account->user_id);
+
+        $account->delete();
+
+        return redirect()->back()->with('success', 'Account deleted successfully');
+    }
+
+    /**
+     * Remove the batch resources from storage.
+     */
+    public function destroys(Request $request)
+    {
+        $validated = $request->validate([
+            'ids' => ['array', 'required'],
+            'ids.*' => ['string', 'required', 'exists:accounts,id'],
+        ]);
+
+        $query = $request->user()->accounts();
+
+        $query->whereIn('id', $validated['ids'])->delete();
+
+        return redirect()->back()->with('success', 'Accounts deleted successfully');
     }
 }

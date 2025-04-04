@@ -1,5 +1,4 @@
-// Components
-import { InputError } from '@/components/elements/input-error';
+import { Message } from '@/components/elements/message';
 import { TextLink } from '@/components/elements/text-link';
 import { AuthLayout } from '@/components/layouts/auth-layout';
 import { Button } from '@/components/ui/button';
@@ -46,7 +45,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
                             placeholder="email@example.com"
                         />
 
-                        <InputError message={errors.email} />
+                        <Message error={errors.email} />
                     </div>
 
                     <div className="my-6 flex items-center justify-start">

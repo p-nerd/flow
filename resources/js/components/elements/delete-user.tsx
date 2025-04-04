@@ -2,7 +2,7 @@ import { useForm } from '@inertiajs/react';
 import { type FormEventHandler, useRef } from 'react';
 
 import { HeadingSmall } from '@/components/elements/heading-small';
-import { InputError } from '@/components/elements/input-error';
+import { Message } from '@/components/elements/message';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -85,7 +85,7 @@ export function DeleteUser() {
                                     autoComplete="current-password"
                                 />
 
-                                <InputError message={errors.password} />
+                                <Message error={errors.password} />
                             </div>
 
                             <DialogFooter className="gap-2">
