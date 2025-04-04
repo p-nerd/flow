@@ -29,6 +29,9 @@ class AccountController extends Controller
             'name' => ['string', 'required', 'max:255'],
         ]);
 
+        /**
+         * @var Account $account
+         */
         $account = $request->user()->accounts()->create($validated);
 
         return redirect()
