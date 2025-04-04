@@ -29,9 +29,11 @@ class AccountController extends Controller
             'name' => ['string', 'required', 'max:255'],
         ]);
 
+        $account = $request->user()->accounts()->create($validated);
+
         return redirect()
             ->route('dashboard.accounts.index')
-            ->with('success', 'Account created successfully');
+            ->with('success', "'{$account->name}' account created successfully");
     }
 
     /**
