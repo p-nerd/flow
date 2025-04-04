@@ -2,7 +2,7 @@ import type { TAccount } from '@/types/models';
 
 import { columns } from './columns';
 
-import { DataTable } from './data-table';
+import { DataTable } from '@/components/elements/table/data-table';
 
 export const AccountsTable = ({ accounts }: { accounts: TAccount[] }) => {
     return (
