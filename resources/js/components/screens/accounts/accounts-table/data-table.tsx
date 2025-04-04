@@ -35,17 +35,28 @@ export const DataTable = <TData, TValue>({
 }) => {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+    const [globalFilter, setGlobalFilter] = useState('');
 
     const table = useReactTable({
         data,
         columns,
+        state: {
+            sorting,
+            columnFilters,
+            globalFilter,
+        },
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         onSortingChange: setSorting,
         getSortedRowModel: getSortedRowModel(),
         onColumnFiltersChange: setColumnFilters,
         getFilteredRowModel: getFilteredRowModel(),
-        state: { sorting, columnFilters },
+        onGlobalFilterChange: setGlobalFilter,
+        globalFilterFn: (row, columnId, filterValue) =>
+            filterKeys.includes(columnId) &&
+            String(row.getValue(columnId) ?? '')
+                .toLowerCase()
+                .includes(filterValue.toLowerCase()),
     });
 
     return (
@@ -53,8 +64,8 @@ export const DataTable = <TData, TValue>({
             <div className="flex items-center py-4">
                 <Input
                     placeholder={cn(`Filter ${filterKeys.join(',')}...`)}
-                    value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-                    onChange={(e) => table.getColumn('name')?.setFilterValue(e.target.value)}
+                    value={globalFilter}
+                    onChange={(e) => setGlobalFilter(e.target.value)}
                     className="max-w-sm"
                 />
             </div>
