@@ -1,14 +1,21 @@
-import type { TBreadcrumb } from '@/types';
 import type { ReactNode } from 'react';
 
+import { Head } from '@inertiajs/react';
 import { HeaderLayout } from './header-layout';
 
 export const DashboardLayout = ({
     children,
-    breadcrumbs,
+    title,
+    href,
 }: {
     children: ReactNode;
-    breadcrumbs?: TBreadcrumb[];
+    title: string;
+    href: string;
 }) => {
-    return <HeaderLayout breadcrumbs={breadcrumbs}>{children}</HeaderLayout>;
+    return (
+        <HeaderLayout breadcrumbs={[{ title, href }]}>
+            <Head title={title} />
+            {children}
+        </HeaderLayout>
+    );
 };
