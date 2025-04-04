@@ -13,7 +13,6 @@ class AccountSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create accounts (3 per user)
         User::all()->each(function ($user) {
             Account::factory()
                 ->forUser($user)
@@ -32,13 +31,13 @@ class AccountSeeder extends Seeder
                 ->create();
         });
 
-        // Account::factory()
-        //     ->count(10)
-        //     ->create();
-        //
-        // Account::factory()
-        //     ->count(5)
-        //     ->withoutPlaidId()
-        //     ->create();
+        Account::factory()
+            ->count(47)
+            ->create();
+
+        Account::factory()
+            ->count(50)
+            ->withoutPlaidId()
+            ->create();
     }
 }

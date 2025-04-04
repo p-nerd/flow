@@ -2,11 +2,10 @@ import type { TAccount } from '@/types/models';
 
 import { Heading } from '@/components/elements/heading';
 import { DashboardLayout } from '@/components/layouts/dashboard-layout';
+import { AccountsTable } from '@/components/screens/accounts/accounts-table';
 import { NewAccount } from '@/components/screens/accounts/new-account';
 
 const Accounts = ({ accounts }: { accounts: TAccount[] }) => {
-    console.log(accounts);
-
     return (
         <DashboardLayout title="Accounts" href="/dashboard/accounts">
             <div className="space-y-8 px-4 py-6">
@@ -17,6 +16,7 @@ const Accounts = ({ accounts }: { accounts: TAccount[] }) => {
                     />
                     <NewAccount />
                 </div>
+                <AccountsTable accounts={accounts} />
             </div>
         </DashboardLayout>
     );
