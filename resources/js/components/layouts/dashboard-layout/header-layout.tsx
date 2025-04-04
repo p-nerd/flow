@@ -1,4 +1,4 @@
-import type { BreadcrumbItem } from '@/types';
+import type { TBreadcrumb } from '@/types';
 import type { ReactNode } from 'react';
 
 import { Content } from './content';
@@ -10,7 +10,7 @@ export function HeaderLayout({
     breadcrumbs,
 }: {
     children: ReactNode;
-    breadcrumbs?: BreadcrumbItem[];
+    breadcrumbs?: TBreadcrumb[];
 }) {
     return (
         <Shell>

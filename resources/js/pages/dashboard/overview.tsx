@@ -1,20 +1,9 @@
-import type { BreadcrumbItem } from '@/types';
-
 import { DashboardLayout } from '@/components/layouts/dashboard-layout';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
-import { Head } from '@inertiajs/react';
-
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Dashboard',
-        href: '/dashboard/overview',
-    },
-];
 
 export default function Dashboard() {
     return (
-        <DashboardLayout breadcrumbs={breadcrumbs}>
-            <Head title="Dashboard" />
+        <DashboardLayout title="Overview" href="/dashboard/overview">
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <div className="grid auto-rows-min gap-4 md:grid-cols-3">
                     <div className="border-sidebar-border/70 dark:border-sidebar-border relative aspect-video overflow-hidden rounded-xl border">

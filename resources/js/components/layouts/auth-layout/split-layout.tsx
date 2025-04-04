@@ -1,4 +1,4 @@
-import type { SharedData } from '@/types';
+import type { TSharedData } from '@/types';
 import type { PropsWithChildren } from 'react';
 
 import { AppLogoIcon } from '@/components/elements/app-logo-icon';
@@ -14,7 +14,7 @@ export default function SplitLayout({
     title,
     description,
 }: PropsWithChildren<AuthLayoutProps>) {
-    const { name, quote } = usePage<SharedData>().props;
+    const { name, quote } = usePage<TSharedData>().props;
 
     return (
         <div className="relative grid h-dvh flex-col items-center justify-center px-8 sm:px-0 lg:max-w-none lg:grid-cols-2 lg:px-0">

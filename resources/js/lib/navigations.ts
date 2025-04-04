@@ -1,4 +1,4 @@
-import type { NavItem } from '@/types';
+import type { TNavItem } from '@/types';
 
 import {
     CreditCardIcon,
@@ -9,7 +9,7 @@ import {
     WalletIcon,
 } from 'lucide-react';
 
-export const mainNavItems: NavItem[] = [
+export const mainNavItems: TNavItem[] = [
     {
         title: 'Overview',
         href: '/dashboard/overview',
@@ -37,7 +37,7 @@ export const mainNavItems: NavItem[] = [
     },
 ];
 
-export const rightNavItems: NavItem[] = [
+export const rightNavItems: TNavItem[] = [
     {
         title: 'Repository',
         href: 'https://github.com/p-nerd/flow',
