@@ -24,6 +24,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { TrashIcon } from 'lucide-react';
+import { Confirmation } from '../confirmation';
 
 export const DataTable = <TData, TValue>({
     columns,
@@ -81,19 +82,20 @@ export const DataTable = <TData, TValue>({
                     className="max-w-sm"
                 />
                 {table.getFilteredSelectedRowModel().rows.length > 0 && (
-                    <Button
-                        disabled={disabled}
-                        variant="destructive"
-                        onClick={() =>
+                    <Confirmation
+                        actionText="Delete"
+                        onAction={() =>
                             onDelete(
                                 table.getFilteredSelectedRowModel().rows.map((row) => row.original),
                                 () => table.resetRowSelection(),
                             )
                         }
                     >
-                        <TrashIcon className="size-4" /> Delete (
-                        {table.getFilteredSelectedRowModel().rows.length})
-                    </Button>
+                        <Button disabled={disabled} variant="destructive">
+                            <TrashIcon className="size-4" /> Delete (
+                            {table.getFilteredSelectedRowModel().rows.length})
+                        </Button>
+                    </Confirmation>
                 )}
             </div>
             <div className="rounded-md border">
