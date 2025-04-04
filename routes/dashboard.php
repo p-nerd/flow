@@ -9,6 +9,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
     Route::get('/overview', fn () => inertia('dashboard/overview'));
 
     Route::prefix('/accounts')->group(function () {
-        Route::get('/', [AccountController::class, 'index']);
+        Route::get('/', [AccountController::class, 'index'])->name('dashboard.accounts.index');
+        Route::post('/', [AccountController::class, 'store'])->name('dashboard.accounts.store');
     });
 });
