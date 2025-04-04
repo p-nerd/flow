@@ -1,7 +1,9 @@
+import type { TAccount } from '@/types/models';
+
 import { DashboardLayout } from '@/components/layouts/dashboard-layout';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 
-const Accounts = () => {
+const Accounts = ({ accounts }: { accounts: TAccount[] }) => {
     return (
         <DashboardLayout title="Accounts" href="/dashboard/accounts">
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
