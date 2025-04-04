@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 
+import { BaseLayout } from '../base-layout';
 import { SimpleLayout } from './simple-layout';
 
 export function AuthLayout({
@@ -13,8 +14,10 @@ export function AuthLayout({
     description: string;
 }) {
     return (
-        <SimpleLayout title={title} description={description} {...props}>
-            {children}
-        </SimpleLayout>
+        <BaseLayout>
+            <SimpleLayout title={title} description={description} {...props}>
+                {children}
+            </SimpleLayout>
+        </BaseLayout>
     );
 }

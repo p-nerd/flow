@@ -38,7 +38,7 @@ export const NewAccount = () => {
                         e.preventDefault();
                         post(route('dashboard.accounts.store'));
                     }}
-                    className="space-y-4 p-4"
+                    className="w-full space-y-4 p-4"
                 >
                     <div className="space-y-2">
                         <Label htmlFor="name">Name</Label>
@@ -55,7 +55,9 @@ export const NewAccount = () => {
                         />
                         <InputError message={errors.name} />
                     </div>
-                    <Button type="submit">Create account</Button>
+                    <Button disabled={processing} type="submit" className="w-full">
+                        Create account
+                    </Button>
                 </form>
             </SheetContent>
         </Sheet>

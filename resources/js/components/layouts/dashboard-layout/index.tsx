@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { Head } from '@inertiajs/react';
+import { BaseLayout } from '../base-layout';
 import { HeaderLayout } from './header-layout';
 
 export const DashboardLayout = ({
@@ -13,9 +14,11 @@ export const DashboardLayout = ({
     href: string;
 }) => {
     return (
-        <HeaderLayout breadcrumbs={[{ title, href }]}>
-            <Head title={title} />
-            {children}
-        </HeaderLayout>
+        <BaseLayout>
+            <HeaderLayout breadcrumbs={[{ title, href }]}>
+                <Head title={title} />
+                {children}
+            </HeaderLayout>
+        </BaseLayout>
     );
 };
