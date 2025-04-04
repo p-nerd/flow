@@ -1,6 +1,7 @@
 import {
     flexRender,
     getCoreRowModel,
+    getFilteredRowModel,
     getPaginationRowModel,
     getSortedRowModel,
     useReactTable,
@@ -15,20 +16,25 @@ import {
     TableRow,
 } from '@/components/ui/table';
 
-import type { ColumnDef, SortingState } from '@tanstack/react-table';
+import type { ColumnDef, ColumnFiltersState, SortingState } from '@tanstack/react-table';
 
+import { cn } from '@/lib/utils';
 import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export const DataTable = <TData, TValue>({
     columns,
     data,
+    filterKeys,
 }: {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
+    filterKeys: string[];
 }) => {
     const [sorting, setSorting] = useState<SortingState>([]);
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
     const table = useReactTable({
         data,
@@ -37,11 +43,21 @@ export const DataTable = <TData, TValue>({
         getPaginationRowModel: getPaginationRowModel(),
         onSortingChange: setSorting,
         getSortedRowModel: getSortedRowModel(),
-        state: { sorting },
+        onColumnFiltersChange: setColumnFilters,
+        getFilteredRowModel: getFilteredRowModel(),
+        state: { sorting, columnFilters },
     });
 
     return (
         <div>
+            <div className="flex items-center py-4">
+                <Input
+                    placeholder={cn(`Filter ${filterKeys.join(',')}...`)}
+                    value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+                    onChange={(e) => table.getColumn('name')?.setFilterValue(e.target.value)}
+                    className="max-w-sm"
+                />
+            </div>
             <div className="rounded-md border">
                 <Table>
                     <TableHeader>
