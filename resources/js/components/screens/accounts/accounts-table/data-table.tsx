@@ -27,11 +27,11 @@ import { Input } from '@/components/ui/input';
 export const DataTable = <TData, TValue>({
     columns,
     data,
-    filterKeys,
+    searchable,
 }: {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
-    filterKeys: string[];
+    searchable: string[];
 }) => {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [globalFilter, setGlobalFilter] = useState<string>('');
@@ -39,7 +39,7 @@ export const DataTable = <TData, TValue>({
     const handleGlobalFilterFn = () => {
         return <TData,>(row: Row<TData>, columnId: string, filterValue: string) => {
             return (
-                filterKeys?.includes(columnId) &&
+                searchable?.includes(columnId) &&
                 String(row.getValue(columnId) ?? '')
                     ?.toLowerCase()
                     ?.includes(filterValue?.toLowerCase())
@@ -64,7 +64,7 @@ export const DataTable = <TData, TValue>({
         <div>
             <div className="flex items-center py-4">
                 <Input
-                    placeholder={cn(`Filter ${filterKeys.join(',')}...`)}
+                    placeholder={cn(`Filter ${searchable.join(',')}...`)}
                     value={globalFilter}
                     onChange={(e) => setGlobalFilter(e.target.value)}
                     className="max-w-sm"
