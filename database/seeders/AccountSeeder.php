@@ -36,7 +36,7 @@ class AccountSeeder extends Seeder
             ->create();
 
         Account::factory()
-            ->count(50)
+            ->count(950)
             ->withoutPlaidId()
             ->create();
     }

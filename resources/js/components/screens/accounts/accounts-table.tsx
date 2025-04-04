@@ -24,11 +24,6 @@ export const columns: ColumnDef<TAccount>[] = [
         header: ({ column }) => <SortHeader column={column} label="Name" />,
     },
     {
-        accessorKey: 'plaid_id',
-        header: 'Plaid ID',
-        cell: ({ row }) => row.original.plaid_id || 'N/A',
-    },
-    {
         id: 'actions',
         cell: ({ row }) => {
             const account = row.original;
@@ -62,7 +57,7 @@ export const AccountsTable = ({ accounts }: { accounts: TAccount[] }) => {
             <DataTable
                 columns={columns}
                 data={accounts}
-                searchable={['name', 'plaid_id']}
+                searchable={['name']}
                 onDelete={(values) => {
                     console.log(values);
                 }}

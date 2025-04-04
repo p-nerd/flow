@@ -12,6 +12,8 @@ class Account extends Model
     /** @use HasFactory<\Database\Factories\AccountFactory> */
     use HasFactory, HasUuids;
 
+    const int LIMIT = 1000;
+
     /**
      * The attributes that are mass assignable.
      *

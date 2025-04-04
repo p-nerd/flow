@@ -13,7 +13,9 @@ class AccountController extends Controller
      */
     public function index(Request $request)
     {
-        $accounts = $request->user()->accounts()->get();
+        $query = $request->user()->accounts();
+
+        $accounts = $query->limit(Account::LIMIT)->get();
 
         return inertia('dashboard/accounts', [
             'accounts' => $accounts,
@@ -29,10 +31,18 @@ class AccountController extends Controller
             'name' => ['string', 'required', 'max:255'],
         ]);
 
+        $query = $request->user()->accounts();
+
+        if ($query->count() >= Account::LIMIT) {
+            return redirect()
+                ->route('dashboard.accounts.index')
+                ->with('error', 'You have reached the maximum limit of '.Account::LIMIT.' accounts.');
+        }
+
         /**
          * @var Account $account
          */
-        $account = $request->user()->accounts()->create($validated);
+        $account = $query->create($validated);
 
         return redirect()
             ->route('dashboard.accounts.index')
