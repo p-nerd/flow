@@ -1,7 +1,7 @@
 import { toast as sonner } from 'sonner';
 
 export const toast = {
-    success: (message: string | null, description: string | null) => {
+    success: (message: string | null, description?: string | null) => {
         if (!message) return;
 
         sonner.success(message, {
@@ -12,7 +12,7 @@ export const toast = {
             },
         });
     },
-    error: (message: string | null, description: string | null) => {
+    error: (message: string | null, description?: string | null) => {
         if (!message) return;
 
         sonner.error(message, {

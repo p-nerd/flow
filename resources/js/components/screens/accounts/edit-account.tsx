@@ -42,7 +42,7 @@ export const EditAccount = ({
                 <form
                     onSubmit={(e) => {
                         e.preventDefault();
-                        patch(route('dashboard.accounts.update'), {
+                        patch(route('dashboard.accounts.update', account), {
                             onSuccess: () => {
                                 setOpen(false);
                                 reset();

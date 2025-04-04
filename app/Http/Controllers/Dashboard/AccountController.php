@@ -46,25 +46,7 @@ class AccountController extends Controller
          */
         $account = $query->create($validated);
 
-        return redirect()
-            ->route('dashboard.accounts.index')
-            ->with('success', "'{$account->name}' account created successfully");
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Account $account)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Account $account)
-    {
-        //
+        return redirect()->back()->with('success', "'{$account->name}' account created successfully");
     }
 
     /**
@@ -72,7 +54,15 @@ class AccountController extends Controller
      */
     public function update(Request $request, Account $account)
     {
-        //
+        Gate::allowIf(fn (User $user) => $user->id === $account->user_id);
+
+        $validated = $request->validate([
+            'name' => ['string', 'required', 'max:255'],
+        ]);
+
+        $account->update($validated);
+
+        return redirect()->back()->with('success', "'{$account->name}' account updated successfully");
     }
 
     /**
@@ -84,9 +74,7 @@ class AccountController extends Controller
 
         $account->delete();
 
-        return redirect()
-            ->route('dashboard.accounts.index')
-            ->with('success', 'Account deleted successfully');
+        return redirect()->back()->with('success', 'Account deleted successfully');
     }
 
     /**
@@ -103,8 +91,6 @@ class AccountController extends Controller
 
         $query->whereIn('id', $validated['ids'])->delete();
 
-        return redirect()
-            ->route('dashboard.accounts.index')
-            ->with('success', 'Accounts deleted successfully');
+        return redirect()->back()->with('success', 'Accounts deleted successfully');
     }
 }
