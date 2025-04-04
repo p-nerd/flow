@@ -12,6 +12,7 @@ import type { ColumnDef } from '@tanstack/react-table';
 
 import { select } from '@/components/elements/table/select';
 
+import { DataTable } from '@/components/elements/table/data-table';
 import { SortHeader } from '@/components/elements/table/sort-header';
 import { Button } from '@/components/ui/button';
 import { MoreHorizontalIcon } from 'lucide-react';
@@ -54,3 +55,19 @@ export const columns: ColumnDef<TAccount>[] = [
         },
     },
 ];
+
+export const AccountsTable = ({ accounts }: { accounts: TAccount[] }) => {
+    return (
+        <div>
+            <DataTable
+                columns={columns}
+                data={accounts}
+                searchable={['name', 'plaid_id']}
+                onDelete={(values) => {
+                    console.log(values);
+                }}
+                disabled={false}
+            />
+        </div>
+    );
+};

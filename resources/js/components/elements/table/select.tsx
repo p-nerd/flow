@@ -1,5 +1,6 @@
+import type { CellContext, HeaderContext } from '@tanstack/react-table';
+
 import { Checkbox } from '@/components/ui/checkbox';
-import { CellContext, HeaderContext } from '@tanstack/react-table';
 
 export const select = <TData, TValue>() => {
     return {
