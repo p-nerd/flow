@@ -14,6 +14,7 @@ export const AccountsTable = ({ accounts }: { accounts: TAccount[] }) => {
                 onDelete={(values) => {
                     console.log(values);
                 }}
+                disabled={false}
             />
         </div>
     );

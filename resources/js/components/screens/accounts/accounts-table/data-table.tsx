@@ -30,11 +30,13 @@ export const DataTable = <TData, TValue>({
     data,
     searchable,
     onDelete,
+    disabled,
 }: {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
     searchable: string[];
     onDelete: (data: TData[]) => void;
+    disabled: boolean;
 }) => {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [globalFilter, setGlobalFilter] = useState<string>('');
@@ -80,6 +82,7 @@ export const DataTable = <TData, TValue>({
                 />
                 {table.getFilteredSelectedRowModel().rows.length > 0 && (
                     <Button
+                        disabled={disabled}
                         variant="destructive"
                         onClick={() =>
                             onDelete(
