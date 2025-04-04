@@ -16,7 +16,7 @@ import {
     TableRow,
 } from '@/components/ui/table';
 
-import type { ColumnDef, ColumnFiltersState, SortingState } from '@tanstack/react-table';
+import type { ColumnDef, Row, SortingState } from '@tanstack/react-table';
 
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
@@ -34,29 +34,30 @@ export const DataTable = <TData, TValue>({
     filterKeys: string[];
 }) => {
     const [sorting, setSorting] = useState<SortingState>([]);
-    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-    const [globalFilter, setGlobalFilter] = useState('');
+    const [globalFilter, setGlobalFilter] = useState<string>('');
+
+    const handleGlobalFilterFn = () => {
+        return <TData,>(row: Row<TData>, columnId: string, filterValue: string) => {
+            return (
+                filterKeys?.includes(columnId) &&
+                String(row.getValue(columnId) ?? '')
+                    ?.toLowerCase()
+                    ?.includes(filterValue?.toLowerCase())
+            );
+        };
+    };
 
     const table = useReactTable({
         data,
         columns,
-        state: {
-            sorting,
-            columnFilters,
-            globalFilter,
-        },
+        state: { sorting, globalFilter },
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         onSortingChange: setSorting,
         getSortedRowModel: getSortedRowModel(),
-        onColumnFiltersChange: setColumnFilters,
         getFilteredRowModel: getFilteredRowModel(),
         onGlobalFilterChange: setGlobalFilter,
-        globalFilterFn: (row, columnId, filterValue) =>
-            filterKeys.includes(columnId) &&
-            String(row.getValue(columnId) ?? '')
-                .toLowerCase()
-                .includes(filterValue.toLowerCase()),
+        globalFilterFn: handleGlobalFilterFn(),
     });
 
     return (
