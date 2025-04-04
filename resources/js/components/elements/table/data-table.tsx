@@ -35,7 +35,7 @@ export const DataTable = <TData, TValue>({
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
     searchable: string[];
-    onDelete: (data: TData[]) => void;
+    onDelete: (data: TData[], onSuccess: () => void) => void;
     disabled: boolean;
 }) => {
     const [sorting, setSorting] = useState<SortingState>([]);
@@ -87,6 +87,7 @@ export const DataTable = <TData, TValue>({
                         onClick={() =>
                             onDelete(
                                 table.getFilteredSelectedRowModel().rows.map((row) => row.original),
+                                () => table.resetRowSelection(),
                             )
                         }
                     >

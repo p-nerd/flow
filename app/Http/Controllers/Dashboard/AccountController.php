@@ -80,4 +80,23 @@ class AccountController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the batch resources from storage.
+     */
+    public function destroys(Request $request)
+    {
+        $validated = $request->validate([
+            'ids' => ['array', 'required'],
+            'ids.*' => ['string', 'required', 'exists:accounts,id'],
+        ]);
+
+        $query = $request->user()->accounts();
+
+        $query->whereIn('id', $validated['ids'])->delete();
+
+        return redirect()
+            ->route('dashboard.accounts.index')
+            ->with('success', 'Accounts deleted successfully');
+    }
 }

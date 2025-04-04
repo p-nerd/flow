@@ -11,5 +11,6 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function ()
     Route::prefix('/accounts')->group(function () {
         Route::get('/', [AccountController::class, 'index'])->name('dashboard.accounts.index');
         Route::post('/', [AccountController::class, 'store'])->name('dashboard.accounts.store');
+        Route::delete('/', [AccountController::class, 'destroys'])->name('dashboard.accounts.destroys');
     });
 });
