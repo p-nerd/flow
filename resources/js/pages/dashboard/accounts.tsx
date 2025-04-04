@@ -3,7 +3,7 @@ import type { TAccount } from '@/types/models';
 import { Heading } from '@/components/elements/heading';
 import { DashboardLayout } from '@/components/layouts/dashboard-layout';
 import { AccountsTable } from '@/components/screens/accounts/accounts-table';
-import { NewAccount } from '@/components/screens/accounts/new-account';
+import { CreateAccount } from '@/components/screens/accounts/create-account';
 
 const Accounts = ({ accounts }: { accounts: TAccount[] }) => {
     return (
@@ -14,7 +14,7 @@ const Accounts = ({ accounts }: { accounts: TAccount[] }) => {
                         title="Accounts"
                         description="View and manage all your financial accounts in one place"
                     />
-                    <NewAccount />
+                    <CreateAccount />
                 </div>
                 <AccountsTable accounts={accounts} />
             </div>

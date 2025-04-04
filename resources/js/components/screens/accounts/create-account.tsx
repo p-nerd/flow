@@ -16,7 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { PlusIcon } from 'lucide-react';
 
-export const NewAccount = () => {
+export const CreateAccount = () => {
     const [open, setOpen] = useState<boolean>(false);
 
     const { processing, post, data, setData, errors, reset } = useForm<{
