@@ -76,7 +76,7 @@ export const DataTable = <TData, TValue>({
         <div>
             <div className="flex items-center justify-between space-x-2 py-4">
                 <Input
-                    placeholder={cn(`Filter ${searchable.join(',')}...`)}
+                    placeholder={cn(`Search with ${searchable.join(',')}...`)}
                     value={globalFilter}
                     onChange={(e) => setGlobalFilter(e.target.value)}
                     className="max-w-sm"
