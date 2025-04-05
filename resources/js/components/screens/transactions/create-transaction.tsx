@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { DatePicker } from '@/components/inputs/date-picker';
 import { SelectOptions } from '@/components/inputs/select-options';
 import { TextInput } from '@/components/inputs/text-input';
+import { TextareaInput } from '@/components/inputs/textarea-input';
 import { Button } from '@/components/ui/button';
 import { PlusIcon } from 'lucide-react';
 
@@ -106,7 +107,7 @@ export const CreateTranaction = ({
                         placeholder="e.g. Walmart, Amazon, Rent"
                         required={true}
                     />
-                    <TextInput
+                    <TextareaInput
                         label="Notes"
                         name="notes"
                         value={data.notes}
