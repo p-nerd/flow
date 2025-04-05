@@ -12,6 +12,7 @@ import type { TOption } from '@/types';
 import { useForm } from '@inertiajs/react';
 import { useState } from 'react';
 
+import { CurrencyInput } from '@/components/inputs/currency-input';
 import { DatePicker } from '@/components/inputs/date-picker';
 import { SelectOptions } from '@/components/inputs/select-options';
 import { TextInput } from '@/components/inputs/text-input';
@@ -31,12 +32,14 @@ export const CreateTranaction = ({
     const { processing, post, data, setData, errors, reset } = useForm<{
         account_id: string;
         category_id: string;
+        amount: number | undefined;
         transaction_at: string;
         payee: string;
         notes: string;
     }>({
         account_id: '',
         category_id: '',
+        amount: undefined,
         transaction_at: '',
         payee: '',
         notes: '',
@@ -87,6 +90,15 @@ export const CreateTranaction = ({
                         onValue={(value) => setData('category_id', value)}
                         placeholder="Select Category"
                         options={categories}
+                        required={true}
+                    />
+                    <CurrencyInput
+                        label="Amount"
+                        name="amount"
+                        value={data.amount}
+                        error={errors.amount}
+                        onValue={(value) => setData('amount', value)}
+                        placeholder="e.g. "
                         required={true}
                     />
                     <DatePicker
