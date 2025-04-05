@@ -23,7 +23,7 @@ class TransactionFactory extends Factory
             'category_id' => Category::factory(),
             'amount' => fake()->numberBetween(-10000, 10000),
             'payee' => fake()->company(),
-            'notes' => fake()->optional(0.7)->sentence(),
+            'notes' => fake()->sentence(),
             'transaction_at' => fake()->dateTimeBetween('-3 months', 'now'),
         ];
     }

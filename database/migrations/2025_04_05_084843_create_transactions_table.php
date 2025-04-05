@@ -21,7 +21,6 @@ return new class extends Migration
 
             $table->integer('amount');
             $table->text('payee');
-            $table->text('payee');
             $table->text('notes');
             $table->timestamp('transaction_at');
 
