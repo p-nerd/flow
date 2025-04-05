@@ -31,13 +31,13 @@ class AccountSeeder extends Seeder
                 ->create();
         });
 
-        Account::factory()
-            ->count(47)
-            ->create();
-
-        Account::factory()
-            ->count(950)
-            ->withoutPlaidId()
-            ->create();
+        // Account::factory()
+        //     ->count(47)
+        //     ->create();
+        //
+        // Account::factory()
+        //     ->count(950)
+        //     ->withoutPlaidId()
+        //     ->create();
     }
 }
