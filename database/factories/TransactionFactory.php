@@ -19,8 +19,8 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            'account_id' => Account::factory(),
-            'category_id' => Category::factory(),
+            'account_id' => Account::inRandomOrder()->first()->id,
+            'category_id' => Category::inRandomOrder()->first()->id,
             'amount' => fake()->numberBetween(-10000, 10000),
             'payee' => fake()->company(),
             'notes' => fake()->sentence(),
