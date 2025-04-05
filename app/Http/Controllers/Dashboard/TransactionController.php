@@ -11,9 +11,17 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $transactions = Transaction::query()
+            ->whereHas('account', fn ($query) => $query->where('user_id', $request->user()->id))
+            ->with(['account', 'category'])
+            ->orderBy('transaction_at', 'desc')
+            ->get();
+
+        return inertia('dashboard/transactions', [
+            'transactions' => $transactions,
+        ]);
     }
 
     /**

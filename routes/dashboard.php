@@ -2,12 +2,24 @@
 
 use App\Http\Controllers\Dashboard\AccountController;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function () {
     Route::redirect('/', '/dashboard/overview')->name('dashboard');
 
     Route::get('/overview', fn () => inertia('dashboard/overview'));
+
+    Route::prefix('/transactions')->group(function () {
+        Route::get('/', [TransactionController::class, 'index'])->name('dashboard.transactions.index');
+
+        Route::post('/', [TransactionController::class, 'store'])->name('dashboard.transactions.store');
+
+        Route::patch('/{transaction}', [TransactionController::class, 'update'])->name('dashboard.transactions.update');
+
+        Route::delete('/{transaction}', [TransactionController::class, 'destroy'])->name('dashboard.transactions.destroy');
+        Route::delete('/', [TransactionController::class, 'destroys'])->name('dashboard.transactions.destroys');
+    });
 
     Route::prefix('/accounts')->group(function () {
         Route::get('/', [AccountController::class, 'index'])->name('dashboard.accounts.index');
