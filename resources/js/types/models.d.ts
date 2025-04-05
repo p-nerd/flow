@@ -25,3 +25,15 @@ export type TCategory = {
     created_at: string;
     updated_at: string;
 };
+
+export type TTransaction = {
+    id: string;
+    account_id: string;
+    category_id: string;
+    amount: number;
+    payee: string;
+    notes: string;
+    transaction_at: string;
+    created_at: string;
+    updated_at: string;
+};
