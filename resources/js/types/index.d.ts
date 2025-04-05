@@ -22,3 +22,8 @@ export type TSharedData = {
     sidebarOpen: boolean;
     flash: { success: string | null; error: string | null; moment: string };
 };
+
+export type TOption = {
+    value: string;
+    label: string;
+};

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
+use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -28,8 +30,26 @@ class TransactionController extends Controller
             $transactions = $query->paginate(perPage: $perPage, page: $page);
         }
 
+        $accounts = $request
+            ->user()
+            ->accounts()
+            ->latest()
+            ->limit(Account::LIMIT)
+            ->get()
+            ->map(fn ($account) => ['value' => $account->id, 'label' => $account->name]);
+
+        $categories = $request
+            ->user()
+            ->categories()
+            ->latest()
+            ->limit(Category::LIMIT)
+            ->get()
+            ->map(fn ($transaction) => ['value' => $transaction->id, 'label' => $transaction->name]);
+
         return inertia('dashboard/transactions', [
             'transactions' => $transactions,
+            'accounts' => $accounts,
+            'categories' => $categories,
         ]);
     }
 
