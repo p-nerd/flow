@@ -8,8 +8,7 @@ import {
 
 import type { TOption } from '@/types';
 
-import { Message } from '@/components/elements/message';
-import { Label } from '@/components/ui/label';
+import { InputWrapper } from './input-wrapper';
 
 export const SelectOptions = ({
     label,
@@ -19,6 +18,8 @@ export const SelectOptions = ({
     onValue,
     placeholder,
     options,
+    required,
+    autoFocus,
 }: {
     label: string;
     name: string;
@@ -27,21 +28,27 @@ export const SelectOptions = ({
     onValue: (value: string) => void;
     placeholder?: string;
     options: TOption[];
+    required?: boolean;
+    autoFocus?: boolean;
 }) => {
     return (
-        <div className="space-y-2">
-            <Label htmlFor={name}>{label}</Label>
-            <Select name={name} value={value} onValueChange={onValue}>
-                <SelectTrigger>
-                    <SelectValue placeholder={placeholder} />
-                </SelectTrigger>
-                <SelectContent id={name}>
-                    {options.map((option) => (
-                        <SelectItem value={option.value}>{option.label}</SelectItem>
-                    ))}
-                </SelectContent>
-            </Select>
-            <Message error={error} />
-        </div>
+        <InputWrapper
+            label={label}
+            name={name}
+            error={error}
+            required={required}
+            input={
+                <Select name={name} value={value} onValueChange={onValue}>
+                    <SelectTrigger>
+                        <SelectValue placeholder={placeholder} />
+                    </SelectTrigger>
+                    <SelectContent id={name} autoFocus={autoFocus}>
+                        {options.map((option) => (
+                            <SelectItem value={option.value}>{option.label}</SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
+            }
+        />
     );
 };

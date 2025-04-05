@@ -12,11 +12,9 @@ import type { TOption } from '@/types';
 import { useForm } from '@inertiajs/react';
 import { useState } from 'react';
 
-import { Message } from '@/components/elements/message';
 import { SelectOptions } from '@/components/inputs/select-options';
+import { TextInput } from '@/components/inputs/text-input';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { PlusIcon } from 'lucide-react';
 
 export const CreateTranaction = ({
@@ -73,6 +71,7 @@ export const CreateTranaction = ({
                         onValue={(value) => setData('account_id', value)}
                         placeholder="Select Account"
                         options={accounts}
+                        required={true}
                     />
                     <SelectOptions
                         label="Category"
@@ -82,22 +81,17 @@ export const CreateTranaction = ({
                         onValue={(value) => setData('category_id', value)}
                         placeholder="Select Category"
                         options={categories}
+                        required={true}
                     />
-                    <div className="space-y-2">
-                        <Label htmlFor="name">Notes</Label>
-                        <Input
-                            id="notes"
-                            type="notes"
-                            required={true}
-                            autoFocus={true}
-                            tabIndex={1}
-                            autoComplete="notes"
-                            value={data.notes}
-                            onChange={(e) => setData('notes', e.target.value)}
-                            placeholder="e.g. Hello World"
-                        />
-                        <Message error={errors.notes} />
-                    </div>
+                    <TextInput
+                        label="Notes"
+                        name="notes"
+                        value={data.notes}
+                        error={errors.notes}
+                        onValue={(value) => setData('notes', value)}
+                        placeholder="e.g. Monthly grocery shopping"
+                        required={true}
+                    />
                     <Button disabled={processing} type="submit" className="w-full">
                         Create transaction
                     </Button>
