@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class TransactionController extends Controller
 {
@@ -13,11 +14,19 @@ class TransactionController extends Controller
      */
     public function index(Request $request)
     {
-        $transactions = Transaction::query()
-            ->whereHas('account', fn ($query) => $query->where('user_id', $request->user()->id))
-            ->with(['account', 'category'])
-            ->orderBy('transaction_at', 'desc')
-            ->get();
+
+        $query = $this->fetchQuery($request);
+
+        $page = $request->input('page');
+
+        $transactions = [];
+
+        if (! $page) {
+            $transactions = $query->where('transaction_at', '>=', Carbon::now()->subDays(30))->get();
+        } else {
+            $perPage = 100;
+            $transactions = $query->paginate(perPage: $perPage, page: $page);
+        }
 
         return inertia('dashboard/transactions', [
             'transactions' => $transactions,
@@ -70,5 +79,13 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         //
+    }
+
+    private function fetchQuery(Request $request)
+    {
+        return Transaction::query()
+            ->whereHas('account', fn ($query) => $query->where('user_id', $request->user()->id))
+            ->with(['account', 'category'])
+            ->orderBy('transaction_at', 'desc');
     }
 }
