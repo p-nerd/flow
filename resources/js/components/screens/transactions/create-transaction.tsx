@@ -94,7 +94,7 @@ export const CreateTranaction = ({
                         value={data.transaction_at}
                         error={errors.transaction_at}
                         onValue={(value) => setData('transaction_at', value)}
-                        placeholder="e.g. "
+                        placeholder="Select transaction date"
                         required={true}
                     />
                     <TextInput
@@ -103,7 +103,7 @@ export const CreateTranaction = ({
                         value={data.payee}
                         error={errors.payee}
                         onValue={(value) => setData('payee', value)}
-                        placeholder="e.g. "
+                        placeholder="e.g. Walmart, Amazon, Rent"
                         required={true}
                     />
                     <TextInput
