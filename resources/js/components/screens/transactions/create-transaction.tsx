@@ -31,11 +31,13 @@ export const CreateTranaction = ({
         account_id: string;
         category_id: string;
         transaction_at: string;
+        payee: string;
         notes: string;
     }>({
         account_id: '',
         category_id: '',
         transaction_at: '',
+        payee: '',
         notes: '',
     });
 
@@ -92,6 +94,15 @@ export const CreateTranaction = ({
                         value={data.transaction_at}
                         error={errors.transaction_at}
                         onValue={(value) => setData('transaction_at', value)}
+                        placeholder="e.g. "
+                        required={true}
+                    />
+                    <TextInput
+                        label="Payee"
+                        name="payee"
+                        value={data.payee}
+                        error={errors.payee}
+                        onValue={(value) => setData('payee', value)}
                         placeholder="e.g. "
                         required={true}
                     />
